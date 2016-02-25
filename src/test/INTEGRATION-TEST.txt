@@ -86,18 +86,18 @@ Steps to follow in setting integration test.
     vi)    taskTitleOptional           - Text to be used as 'title' while creating a task with optional parameters.
     vii)   endDate                     - Date to be used as 'deadline' while creating a task with optional parameters. e.g.: 2015-09                                              -15T00:00:00+0000.
     vii)   endDateTimeZone             - Standard time zone code to be used as "deadline_timezone" while creating a task with optional                                            parameters (e.g.: GST).
-    ix)   updateTaskTitle             - Text to be used as 'title' while updating a task with optional parameters (Note: This parameter                                          value must be different than the "taskTitleOptional" parameter value. ). 
-    x)    updateTaskEndDate           - Date to be used as 'deadline' while updating a task with optional parameters (Note: This                                                 parameter  value must be different than the "endDate" parameter value.). e.g.: 2015-09-20T00:00                                          :00+0000.
-    xi)   updateTaskEndDateTimeZone   - Standard time zone code to be used as "deadline_timezone" while updating a task with optional                                            parameters (Note: This parameter  value must be different than the "endDateTimeZone" parameter                                           value.). e.g.: GMT.
-    xii)  noteMessageMand             - Text to be used as 'message' while creating a note with mandatory parameters.
-    xiii) noteMessageOpt              - Text to be used as 'message' while creating a note with optional parameters.
-    xiv)  taskIdWithFileNote          - Use the task ID created under step 5 iv).
-    xv)   invitationType              - Type of the network invitation ( Possible values are "member" and "admin").
-    xvi)  invitationEmail             - Email address of the person to be used as invite user to the network with mandatory parameters.
-    xvii) labelId                     - Use the label ID created under step 5 vi).
-    xvii) labelTitle                  - Use a valid string. The value should be different from the title of label created in step 5 vi).
-    xix)  foregroundColor             - Use a hexadecimal colour code as the value (The initial value should be different from '#e8cdde'                                         ).
-    xx)   backgroundColor             - Use a hexadecimal colour code as the value (The initial value should be different from '#9f3879'                                         ).
+    ix)    updateTaskTitle             - Text to be used as 'title' while updating a task with optional parameters (Note: This parameter                                          value must be different than the "taskTitleOptional" parameter value. ). 
+    x)     updateTaskEndDate           - Date to be used as 'deadline' while updating a task with optional parameters (Note: This                                                 parameter  value must be different than the "endDate" parameter value.). e.g.: 2015-09-20T00:00                                          :00+0000.
+    xi)    updateTaskEndDateTimeZone   - Standard time zone code to be used as "deadline_timezone" while updating a task with optional                                            parameters (Note: This parameter  value must be different than the "endDateTimeZone" parameter                                           value.). e.g.: GMT.
+    xii)   noteMessageMand             - Text to be used as 'message' while creating a note with mandatory parameters.
+    xiii)  noteMessageOpt              - Text to be used as 'message' while creating a note with optional parameters.
+    xiv)   taskIdWithFileNote          - Use the task ID created under step 5 iv).
+    xv)    invitationType              - Type of the network invitation ( Possible values are "member" and "admin").
+    xvi)   invitationEmail             - Email address of the person to be used as invite user to the network with mandatory parameters.
+    xvii)  labelId                     - Use the label ID created under step 5 vi).
+    xvii)  labelTitle                  - Use a valid string. The value should be different from the title of label created in step 5 vi).
+    xix)   foregroundColor             - Use a hexadecimal colour code as the value (The initial value should be different from '#e8cdde'                                         ).
+    xx)    backgroundColor             - Use a hexadecimal colour code as the value (The initial value should be different from '#9f3879'                                         ).
 		
     NOTE: The property values of taskTitleMandatory, taskTitleOptional, invitationEmail, labelId, labelTitle, foregroundColor, background           Color should be changed to unique different values for each integration execution.  
 
