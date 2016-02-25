@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- ~  Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
- ~
- ~  WSO2 Inc. licenses this file to you under the Apache License,
- ~  Version 2.0 (the "License"); you may not use this file except
- ~  in compliance with the License.
- ~  You may obtain a copy of the License at
- ~
- ~    http://www.apache.org/licenses/LICENSE-2.0
- ~
- ~  Unless required by applicable law or agreed to in writing,
- ~  software distributed under the License is distributed on an
- ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- ~  KIND, either express or implied.  See the License for the
- ~  specific language governing permissions and limitations
- ~  under the License.
--->
+  ~ Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+  ~
+  ~   WSO2 Inc. licenses this file to you under the Apache License,
+  ~   Version 2.0 (the "License"); you may not use this file except
+  ~   in compliance with the License.
+  ~   You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing,
+  ~  software distributed under the License is distributed on an
+  ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  ~  KIND, either express or implied.  See the License for the
+  ~  specific language governing permissions and limitations
+  ~  under the License.
+  -->
 <!-- This sequence extracts details of projects and users, and stores them as JSON objects. -->
 <sequence xmlns="http://ws.apache.org/ns/synapse" name="retrieveTasksAndCreateIssues_verifyPrerequisites">
     <property name="uri.var.apiUrl" expression="get-property('bugherd.apiUrl')"/>
@@ -37,20 +37,20 @@
             <!-- Construct a JSON object by extracting project details from the project list and set it to payload. -->
             <script language="js">
             <![CDATA[
-				var projectDetails = {};
-				var projects = mc.getProperty('bugherd.projects');
-				var projectId;
-				if(projects != null && projects != ''){
-					projects = eval("(" + projects + ")");
-					// Iterate through the projects and pick the project name and id.
-					for(var i=0; i<projects.length; i++){
-						projectId=''+projects[i].id;
-						projectId=projectId.split(".")[0];
-						projectDetails[projects[i].name] = projectId;
-					}
-				}	
-				mc.setPayloadJSON(projectDetails);
-			 ]]>
+                var projectDetails = {};
+                var projects = mc.getProperty('bugherd.projects');
+                var projectId;
+                if(projects != null && projects != ''){
+                    projects = eval("(" + projects + ")");
+                    // Iterate through the projects and pick the project name and id.
+                    for(var i=0; i<projects.length; i++){
+                        projectId=''+projects[i].id;
+                        projectId=projectId.split(".")[0];
+                        projectDetails[projects[i].name] = projectId;
+                    }
+                }
+                mc.setPayloadJSON(projectDetails);
+             ]]>
             </script>
             <property name="bugherd.projectDetails" expression="json-eval($)" scope="operation"/>
         </then>
@@ -78,21 +78,21 @@
             <!-- Extract the user email and userId from project list. -->
             <script language="js">
             <![CDATA[
-			    //Construct a JSON object by extracting user email and id from the user list and set it to payload.
-				var userDetails = {};
-				var users = mc.getProperty('bugherd.users');
-				var userId;
-				if(users != null && users != ''){
-					users = eval("(" + users + ")");
-					// Iterate through the users and pick the project name and id.
-					for(var i=0; i<users.length; i++){
-						userId=''+users[i].id;
-						userId=userId.split(".")[0];
-						userDetails[users[i].email] = userId;
-					}
-				}		
-				mc.setPayloadJSON(userDetails);
-			 ]]>
+                //Construct a JSON object by extracting user email and id from the user list and set it to payload.
+                var userDetails = {};
+                var users = mc.getProperty('bugherd.users');
+                var userId;
+                if(users != null && users != ''){
+                    users = eval("(" + users + ")");
+                    // Iterate through the users and pick the project name and id.
+                    for(var i=0; i<users.length; i++){
+                        userId=''+users[i].id;
+                        userId=userId.split(".")[0];
+                        userDetails[users[i].email] = userId;
+                    }
+                }
+                mc.setPayloadJSON(userDetails);
+             ]]>
             </script>
             <property name="bugherd.userDetails" expression="json-eval($)" scope="operation"/>
         </then>

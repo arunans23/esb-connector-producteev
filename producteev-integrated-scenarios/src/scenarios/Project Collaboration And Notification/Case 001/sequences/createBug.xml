@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- ~  Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
- ~
- ~  WSO2 Inc. licenses this file to you under the Apache License,
- ~  Version 2.0 (the "License"); you may not use this file except
- ~  in compliance with the License.
- ~  You may obtain a copy of the License at
- ~
- ~    http://www.apache.org/licenses/LICENSE-2.0
- ~
- ~  Unless required by applicable law or agreed to in writing,
- ~  software distributed under the License is distributed on an
- ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- ~  KIND, either express or implied.  See the License for the
- ~  specific language governing permissions and limitations
- ~  under the License.
--->
+  ~ Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+  ~
+  ~   WSO2 Inc. licenses this file to you under the Apache License,
+  ~   Version 2.0 (the "License"); you may not use this file except
+  ~   in compliance with the License.
+  ~   You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing,
+  ~  software distributed under the License is distributed on an
+  ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  ~  KIND, either express or implied.  See the License for the
+  ~  specific language governing permissions and limitations
+  ~  under the License.
+  -->
 <!-- This sequence creates a task in Bugherd and assigns a user who is assigned to the corresponding Producteev task. -->
 <sequence xmlns="http://ws.apache.org/ns/synapse" name="createBug">
     <property name="projectDetails" expression="get-property('operation','bugherd.projectDetails')"/>
     <script language="js">
         <![CDATA[
-			//Checkk whether the project exists in Bugherd.
-			var projectTitle = mc.getProperty('producteev.projectTitle');
-			var projectDetails = mc.getProperty('projectDetails');
-			projectDetails =eval("(" + projectDetails + ")");
-			var projectId="";
-			if(projectDetails[projectTitle]!=null){
-			 projectId=projectDetails[projectTitle];
-			}		
-			mc.setProperty("bugherd.projectId",projectId);
-		]]>
+            //Checkk whether the project exists in Bugherd.
+            var projectTitle = mc.getProperty('producteev.projectTitle');
+            var projectDetails = mc.getProperty('projectDetails');
+            projectDetails =eval("(" + projectDetails + ")");
+            var projectId="";
+            if(projectDetails[projectTitle]!=null){
+                projectId=projectDetails[projectTitle];
+            }
+            mc.setProperty("bugherd.projectId",projectId);
+        ]]>
     </script>
     <!-- START of Filter: Proceed to process if project exist in Bugherd. -->
     <filter source="boolean(get-property('bugherd.projectId'))" regex="false">
@@ -71,27 +71,27 @@
             <property name="userDetails" expression="get-property('operation','bugherd.userDetails')"/>
             <script language="js">
             <![CDATA[
-				//Construct the JSON object for task to be used in createProjectTask method call. 
-				var task = {}; 
-				var taskPriority = mc.getProperty('bugherd.taskPriority');
-				var taskId = mc.getProperty('producteev.taskId');
-				var assigneeEmail = mc.getProperty('producteev.assigneeEmail');
-				var taskTitle = mc.getProperty('producteev.taskTitle');
-				var requesterEmail = mc.getProperty('clientEmail');
-				var userDetails = mc.getProperty('userDetails');
-				userDetails =eval("(" + userDetails + ")");
-				var userId="";
-				if(userDetails[assigneeEmail]!=null){
-				 userId=userDetails[assigneeEmail];
-				}
-				task['description'] = taskTitle;
-				task['priority'] = taskPriority;
-				task['status'] = "Backlog";
-				task['requester_email'] = requesterEmail;
-				task['assigned_to_id'] = userId;
-				task['external_id'] = taskId;
-				mc.setPayloadJSON(task);
-			]]>
+                //Construct the JSON object for task to be used in createProjectTask method call.
+                var task = {};
+                var taskPriority = mc.getProperty('bugherd.taskPriority');
+                var taskId = mc.getProperty('producteev.taskId');
+                var assigneeEmail = mc.getProperty('producteev.assigneeEmail');
+                var taskTitle = mc.getProperty('producteev.taskTitle');
+                var requesterEmail = mc.getProperty('clientEmail');
+                var userDetails = mc.getProperty('userDetails');
+                userDetails =eval("(" + userDetails + ")");
+                var userId="";
+                if(userDetails[assigneeEmail]!=null){
+                 userId=userDetails[assigneeEmail];
+                }
+                task['description'] = taskTitle;
+                task['priority'] = taskPriority;
+                task['status'] = "Backlog";
+                task['requester_email'] = requesterEmail;
+                task['assigned_to_id'] = userId;
+                task['external_id'] = taskId;
+                mc.setPayloadJSON(task);
+            ]]>
             </script>
             <property name="producteev.task" expression="json-eval($)"/>
             <!-- Create task in Bugherd. -->
@@ -151,13 +151,13 @@
                     <!-- END of Filter: Set error message if user is not assigned. -->
                     <script language="js">
                     <![CDATA[
-						//Create a comment for the task.
-						var note = {}; 
-						var taskDescription = mc.getProperty('producteev.taskDescription');
-						taskDescription = "Task Description:"+taskDescription;
-						note['text'] = taskDescription;
-						mc.setPayloadJSON(note);
-					]]>
+                        //Create a comment for the task.
+                        var note = {};
+                        var taskDescription = mc.getProperty('producteev.taskDescription');
+                        taskDescription = "Task Description:"+taskDescription;
+                        note['text'] = taskDescription;
+                        mc.setPayloadJSON(note);
+                    ]]>
                     </script>
                     <property name="bugherd.comment" expression="json-eval($)"/>
                     <!-- Add description for the task as comment in Bugherd. -->

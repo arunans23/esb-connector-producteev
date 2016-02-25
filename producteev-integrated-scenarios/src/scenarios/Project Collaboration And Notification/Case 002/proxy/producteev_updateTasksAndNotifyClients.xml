@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- ~  Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
- ~
- ~  WSO2 Inc. licenses this file to you under the Apache License,
- ~  Version 2.0 (the "License"); you may not use this file except
- ~  in compliance with the License.
- ~  You may obtain a copy of the License at
- ~
- ~    http://www.apache.org/licenses/LICENSE-2.0
- ~
- ~  Unless required by applicable law or agreed to in writing,
- ~  software distributed under the License is distributed on an
- ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- ~  KIND, either express or implied.  See the License for the
- ~  specific language governing permissions and limitations
- ~  under the License.
--->
+  ~ Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+  ~
+  ~   WSO2 Inc. licenses this file to you under the Apache License,
+  ~   Version 2.0 (the "License"); you may not use this file except
+  ~   in compliance with the License.
+  ~   You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing,
+  ~  software distributed under the License is distributed on an
+  ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  ~  KIND, either express or implied.  See the License for the
+  ~  specific language governing permissions and limitations
+  ~  under the License.
+  -->
 <!--This proxy will retrieve all the resolved bugs in Bugherd and incidents in PagerDuty, notify the requesters of them via Mandrill and finally update the resolution and the status of them in Producteev 
    and ZohoCrm accordingly. -->
 <proxy xmlns="http://ws.apache.org/ns/synapse" name="producteev_updateTasksAndNotifyClients" transports="https,http"
@@ -187,16 +187,16 @@
                                                                             <!--Retrieving the resolution and the task description of the incident from notes. -->
                                                                             <script language="js">
                                                                                 <![CDATA[
-															                        var noteContent = mc.getProperty('pagerduty.noteContent');
-															                        if(noteContent.indexOf("Task Resolution:")!=-1){
-																                        var noteStringArray = noteContent.split('Task Resolution:');
-																                        mc.setProperty('taskResolution',noteStringArray[1]);
-															                        }
-															                        if(noteContent.indexOf("Task Description:")!=-1){
-																                        var noteStringArray = noteContent.split('Task Description:');
-																                        mc.setProperty('taskDescription',noteStringArray[1]);
-															                        }
-														                        ]]>
+                                                                                    var noteContent = mc.getProperty('pagerduty.noteContent');
+                                                                                    if(noteContent.indexOf("Task Resolution:")!=-1){
+                                                                                        var noteStringArray = noteContent.split('Task Resolution:');
+                                                                                        mc.setProperty('taskResolution',noteStringArray[1]);
+                                                                                    }
+                                                                                    if(noteContent.indexOf("Task Description:")!=-1){
+                                                                                        var noteStringArray = noteContent.split('Task Description:');
+                                                                                        mc.setProperty('taskDescription',noteStringArray[1]);
+                                                                                    }
+                                                                                ]]>
                                                                             </script>
                                                                             <property name="producteev.message"
                                                                                       expression="get-property('taskResolution')"
