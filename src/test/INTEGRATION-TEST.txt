@@ -70,7 +70,7 @@ Steps to follow in setting integration test.
          NOTE: CERT_FILE_NAME - Replace CERT_FILE_NAME with the file name that was extracted from Producteev with the extension. (e.g.                                   Producteev.crt)
                CERT_NAME      - Replace CERT_NAME with an arbitrary name for the certificate. (e.g. Producteev).
  
- 7. Compress modified ESB as wso2esb-4.9.0.zip and copy that zip file in to location "<ESB_CONNECTOR_HOME>/repository/".
+ 7. Compress modified ESB as wso2esb-4.9.0.zip and copy that zip file in to location "<PRODUCTEEV_CONNECTOR_HOME>/repository/".
  
  8. Make sure that Producteev is specified as a module in ESB Connector Parent pom.
 
