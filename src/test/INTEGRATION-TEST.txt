@@ -4,7 +4,7 @@ Pre-requisites:
 
   - Maven 3.x
   - Java 1.6 or above
-  - The org.wso2.esb.integration.integration-base project is required and It will found in https://github.com/wso2-extensions/esb-integration-base.
+  - The org.wso2.esb.integration.integration-base project is required and It will found in https://github.com/wso2-extensions/esb            -integration-base.
 
 Tested Platform: 
 
@@ -57,18 +57,18 @@ Steps to follow in setting integration test.
          This command will import Producteev certificate into keystore. 
          To import the certificate give "wso2carbon" as password. Press "Y" to complete certificate import process.
 
-         NOTE: CERT_FILE_NAME - Replace CERT_FILE_NAME with the file name that was extracted from Producteev with the extension. (e.g. Producteev.crt)
-               CERT_NAME - Replace CERT_NAME with an arbitrary name for the certificate. (e.g. Producteev)
+         NOTE: CERT_FILE_NAME - Replace CERT_FILE_NAME with the file name that was extracted from Producteev with the extension. (e.g.                                   Producteev.crt)
+               CERT_NAME      - Replace CERT_NAME with an arbitrary name for the certificate. (e.g. Producteev)
 
-    iv) Navigate to "<PRODUCTEEV_CONNECTOR_HOME>/src/test/resources/keystores/products/" using command prompt and execute the following command.
+    iv) Navigate to "<PRODUCTEEV_CONNECTOR_HOME>/src/test/resources/keystores/products/" using command prompt and execute the following          command.
 
          keytool -importcert -file CERT_FILE_NAME -keystore wso2carbon.jks -alias "CERT_NAME" 
 
          This command will import Producteev certificate in to keystore. Give "wso2carbon" as password.
          To import the certificate give "wso2carbon" as password. Press "Y" to complete certificate import process.
 
-         NOTE: CERT_FILE_NAME - Replace CERT_FILE_NAME with the file name that was extracted from Producteev with the extension. (e.g. Producteev.crt)
-               CERT_NAME - Replace CERT_NAME with an arbitrary name for the certificate. (e.g. Producteev).
+         NOTE: CERT_FILE_NAME - Replace CERT_FILE_NAME with the file name that was extracted from Producteev with the extension. (e.g.                                   Producteev.crt)
+               CERT_NAME      - Replace CERT_NAME with an arbitrary name for the certificate. (e.g. Producteev).
  
  7. Compress modified ESB as wso2esb-4.9.0.zip and copy that zip file in to location "<ESB_CONNECTOR_HOME>/repository/".
  
@@ -76,7 +76,7 @@ Steps to follow in setting integration test.
 
     <module>producteev/producteev-connector/producteev-connector-1.0.0/org.wso2.carbon.connector</module>
  
- 9. Update the Producteev properties file at location "<PRODUCTEEV_CONNECTOR_HOME>/src/test/resources/artifacts/ESB/connector/config" as below.
+ 9. Update the Producteev properties file at location "<PRODUCTEEV_CONNECTOR_HOME>/src/test/resources/artifacts/ESB/connector/config" as     below.
 
     i)     apiUrl                      - The API URL specific to the domain of the created account (e.g.: https://www.producteev.com).
     ii)    networkId                   - Use the network ID created under step 5 i).
@@ -84,11 +84,11 @@ Steps to follow in setting integration test.
     iv)    userId                      - Use the user ID created under step 5 iii).
     v)     taskTitleMandatory          - Text to be used as 'title' while creating a task with mandatory parameters.	
     vi)    taskTitleOptional           - Text to be used as 'title' while creating a task with optional parameters.
-    vii)   endDate                     - Date to be used as 'deadline' while creating a task with optional parameters. e.g.: 2015-09-15T00:00:00+0000.
-    vii)   endDateTimeZone             - Standard time zone code to be used as "deadline_timezone" while creating a task with optional parameters (e.g.: GST).
-    ix)   updateTaskTitle             - Text to be used as 'title' while updating a task with optional parameters (Note: This parameter  value must be different than the "taskTitleOptional" parameter value. ). 
-    x)    updateTaskEndDate           - Date to be used as 'deadline' while updating a task with optional parameters (Note: This parameter  value must be different than the "endDate" parameter value.). e.g.: 2015-09-20T00:00:00+0000.
-    xi)   updateTaskEndDateTimeZone   - Standard time zone code to be used as "deadline_timezone" while updating a task with optional parameters (Note: This parameter  value must be different than the "endDateTimeZone" parameter value.). e.g.: GMT.
+    vii)   endDate                     - Date to be used as 'deadline' while creating a task with optional parameters. e.g.: 2015-09                                              -15T00:00:00+0000.
+    vii)   endDateTimeZone             - Standard time zone code to be used as "deadline_timezone" while creating a task with optional                                            parameters (e.g.: GST).
+    ix)   updateTaskTitle             - Text to be used as 'title' while updating a task with optional parameters (Note: This parameter                                          value must be different than the "taskTitleOptional" parameter value. ). 
+    x)    updateTaskEndDate           - Date to be used as 'deadline' while updating a task with optional parameters (Note: This                                                 parameter  value must be different than the "endDate" parameter value.). e.g.: 2015-09-20T00:00                                          :00+0000.
+    xi)   updateTaskEndDateTimeZone   - Standard time zone code to be used as "deadline_timezone" while updating a task with optional                                            parameters (Note: This parameter  value must be different than the "endDateTimeZone" parameter                                           value.). e.g.: GMT.
     xii)  noteMessageMand             - Text to be used as 'message' while creating a note with mandatory parameters.
     xiii) noteMessageOpt              - Text to be used as 'message' while creating a note with optional parameters.
     xiv)  taskIdWithFileNote          - Use the task ID created under step 5 iv).
@@ -96,10 +96,10 @@ Steps to follow in setting integration test.
     xvi)  invitationEmail             - Email address of the person to be used as invite user to the network with mandatory parameters.
     xvii) labelId                     - Use the label ID created under step 5 vi).
     xvii) labelTitle                  - Use a valid string. The value should be different from the title of label created in step 5 vi).
-    xix)  foregroundColor             - Use a hexadecimal colour code as the value (The initial value should be different from '#e8cdde').
-    xx)   backgroundColor             - Use a hexadecimal colour code as the value (The initial value should be different from '#9f3879').
+    xix)  foregroundColor             - Use a hexadecimal colour code as the value (The initial value should be different from '#e8cdde'                                         ).
+    xx)   backgroundColor             - Use a hexadecimal colour code as the value (The initial value should be different from '#9f3879'                                         ).
 		
-    NOTE: The property values of taskTitleMandatory, taskTitleOptional, invitationEmail, labelId, labelTitle, foregroundColor, backgroundColor should be changed to unique different values for each integration execution.  
+    NOTE: The property values of taskTitleMandatory, taskTitleOptional, invitationEmail, labelId, labelTitle, foregroundColor, background           Color should be changed to unique different values for each integration execution.  
 
- 10. Navigate to "<ESB_CONNECTOR_HOME>/" and run the following command.
+ 10. Navigate to "<PRODUCTEEV_CONNECTOR_HOME>/" and run the following command.
      $ mvn clean install
