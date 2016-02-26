@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- ~  Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
- ~
- ~  WSO2 Inc. licenses this file to you under the Apache License,
- ~  Version 2.0 (the "License"); you may not use this file except
- ~  in compliance with the License.
- ~  You may obtain a copy of the License at
- ~
- ~    http://www.apache.org/licenses/LICENSE-2.0
- ~
- ~  Unless required by applicable law or agreed to in writing,
- ~  software distributed under the License is distributed on an
- ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- ~  KIND, either express or implied.  See the License for the
- ~  specific language governing permissions and limitations
- ~  under the License.
--->
+  ~ Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+  ~
+  ~   WSO2 Inc. licenses this file to you under the Apache License,
+  ~   Version 2.0 (the "License"); you may not use this file except
+  ~   in compliance with the License.
+  ~   You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing,
+  ~  software distributed under the License is distributed on an
+  ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  ~  KIND, either express or implied.  See the License for the
+  ~  specific language governing permissions and limitations
+  ~  under the License.
+  -->
 <!--The sequence will perform three of the activities given as below.
    ACTIVITY 1: Add a note to Producteev task containing the resolution of the Bug in Bugherd or Incident in PagerDuty.
    ACTIVITY 2: Update the Producteev task as 'resolved'.
@@ -126,26 +126,26 @@
             <property name="caseAttributes" expression="json-eval($.response.result.Cases.row.FL)"/>
             <script language="js">
              <![CDATA[
-				//Script Mediator is used to extract necessary properties from the JSON response.
-				//Attributes of the case are returned as a map (key-value pairs) rather than as an object
-				var jsn = eval("(" + mc.getProperty("caseAttributes") + ")");
-				for (var i = 0; i<jsn.length ; i++) {
-						if(jsn[i].val == "Reported By"){
-							mc.setProperty('zohoCrm.requesterName', '' + jsn[i].content);
-						}
-				}
-				//formatting the email contents to be sent via Mandril.		
-				var serviceProviderName = mc.getProperty('mandrill.fromName');
-				var taskSubject = mc.getProperty('producteev.taskSubject');
-				var taskDescription = mc.getProperty('producteev.taskDescription');
-				var incidentKey = mc.getProperty('producteev.taskId');
-				var requesterName = mc.getProperty('zohoCrm.requesterName');
-				var to = '[{"email": "' + mc.getProperty('producteev.clientEmail') + '"}]';                                                   
-				var mailSubject = 'Service Request Closed.';                                                  
-				var mailContent = "<style>table.line, td.line {border: 1px solid #33CCFF;border-collapse: collapse;}</style> <h3>Dear "+requesterName+",</h3> <p>Thank you for reaching the "+serviceProviderName+"</p> <p>Please note that the ticket you raised is being addressed and closed as follows.</p> <table class=line> <tr style=background-color:#33CCFF> <td class=line colspan='2'>Ticket Details</td> </tr> <tr> <td class=line>Ticket Reference</td> <td class=line>"+incidentKey+"</td> </tr> <tr> <td class=line style=width:100px;>Ticket Subject</td> <td class=line style=width:300px;>"+taskSubject+"</td> </tr> <tr> <td class=line>Description</td> <td class=line>"+taskDescription+"</td> </tr> <tr> <td class=line>Status</td> <td class=line>Resolved</td> </tr> </table> <p>Regards,</p> <p><b>"+serviceProviderName+"</b></p>";
-				mc.setProperty('mandrill.to', to);
-				mc.setProperty('mandrill.subject', mailSubject);
-				mc.setProperty('mandrill.requester.html', mailContent);
+                //Script Mediator is used to extract necessary properties from the JSON response.
+                //Attributes of the case are returned as a map (key-value pairs) rather than as an object
+                var jsn = eval("(" + mc.getProperty("caseAttributes") + ")");
+                for (var i = 0; i<jsn.length ; i++) {
+                        if(jsn[i].val == "Reported By"){
+                            mc.setProperty('zohoCrm.requesterName', '' + jsn[i].content);
+                        }
+                }
+                //formatting the email contents to be sent via Mandril.
+                var serviceProviderName = mc.getProperty('mandrill.fromName');
+                var taskSubject = mc.getProperty('producteev.taskSubject');
+                var taskDescription = mc.getProperty('producteev.taskDescription');
+                var incidentKey = mc.getProperty('producteev.taskId');
+                var requesterName = mc.getProperty('zohoCrm.requesterName');
+                var to = '[{"email": "' + mc.getProperty('producteev.clientEmail') + '"}]';
+                var mailSubject = 'Service Request Closed.';
+                var mailContent = "<style>table.line, td.line {border: 1px solid #33CCFF;border-collapse: collapse;}</style> <h3>Dear "+requesterName+",</h3> <p>Thank you for reaching the "+serviceProviderName+"</p> <p>Please note that the ticket you raised is being addressed and closed as follows.</p> <table class=line> <tr style=background-color:#33CCFF> <td class=line colspan='2'>Ticket Details</td> </tr> <tr> <td class=line>Ticket Reference</td> <td class=line>"+incidentKey+"</td> </tr> <tr> <td class=line style=width:100px;>Ticket Subject</td> <td class=line style=width:300px;>"+taskSubject+"</td> </tr> <tr> <td class=line>Description</td> <td class=line>"+taskDescription+"</td> </tr> <tr> <td class=line>Status</td> <td class=line>Resolved</td> </tr> </table> <p>Regards,</p> <p><b>"+serviceProviderName+"</b></p>";
+                mc.setProperty('mandrill.to', to);
+                mc.setProperty('mandrill.subject', mailSubject);
+                mc.setProperty('mandrill.requester.html', mailContent);
              ]]>
             </script>
             <property name="mandrill.html"
@@ -197,11 +197,11 @@
     <!--ACTIVITY 4: Update the appropriate Case in ZohoCrm with setting the resolution of the task and the status as resolved. -->
     <script language="js">
         <![CDATA[
-			//constructing the xml data in order to update the Case in ZohoCrm								
-			var taskResolution = mc.getProperty('producteev.message').split(":")[1];								
-			var xmlData="<Cases> <row no=\"1\"> <FL val=\"Status\">Closed</FL><FL val=\"Solution\">"+taskResolution+"</FL></row> </Cases>";
-			mc.setProperty('zohocrm.xmlData', xmlData);
-		]]>
+            //constructing the xml data in order to update the Case in ZohoCrm
+            var taskResolution = mc.getProperty('producteev.message').split(":")[1];
+            var xmlData="<Cases> <row no=\"1\"> <FL val=\"Status\">Closed</FL><FL val=\"Solution\">"+taskResolution+"</FL></row> </Cases>";
+            mc.setProperty('zohocrm.xmlData', xmlData);
+        ]]>
     </script>
     <zohocrm.init>
         <apiUrl>{$ctx:zohocrm.apiUrl}</apiUrl>
@@ -244,10 +244,10 @@
         <then>
             <script language="js">
             <![CDATA[
-				//script to construct the JSON object to update the task.
-				var taskObject={"status":"closed"};
-				mc.setPayloadJSON(taskObject);
-			]]>
+                //script to construct the JSON object to update the task.
+                var taskObject={"status":"closed"};
+                mc.setPayloadJSON(taskObject);
+            ]]>
             </script>
             <property name="bugherd.task" expression="json-eval($)"/>
             <bugherd.init>
