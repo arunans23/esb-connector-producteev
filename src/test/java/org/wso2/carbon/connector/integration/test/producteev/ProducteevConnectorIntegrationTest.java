@@ -45,7 +45,7 @@ public class ProducteevConnectorIntegrationTest extends ConnectorIntegrationTest
    @BeforeClass(alwaysRun = true)
    public void setEnvironment() throws Exception {
    
-      init("producteev-connector-1.0.1-SNAPSHOT");
+      init("producteev-connector-1.0.1");
       
       apiUrl = connectorProperties.getProperty("apiUrl") + "/api";
       
