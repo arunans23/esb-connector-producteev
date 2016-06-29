@@ -4,18 +4,18 @@ Pre-requisites:
 
   - Maven 3.x
   - Java 1.6 or above
-  - The org.wso2.esb.integration.integration-base project is required and It will found in https://github.com/wso2-extensions/esb            -integration-base.
+  - The org.wso2.esb.integration.integration-base project is required and It will found in https://github.com/wso2-extensions/esb-integration-base.
 
 Tested Platform: 
 
  - Microsoft WINDOWS V-7
  - UBUNTU 13.04
- - WSO2 ESB 4.9.0
+ - WSO2 ESB 4.9.0, WSO2 ESB 5.0.0-BETA
  - Java 1.7
 
 Steps to follow in setting integration test.
 
- 1. Download ESB 4.9.0 from WSO2 ESB official site.
+ 1. Download latest ESB from WSO2 ESB official site.
  
  2. Deploy relevant patches, if applicable. Place the patch files into location <ESB_HOME>/repository/components/patches.
  
@@ -57,20 +57,20 @@ Steps to follow in setting integration test.
          This command will import Producteev certificate into keystore. 
          To import the certificate give "wso2carbon" as password. Press "Y" to complete certificate import process.
 
-         NOTE: CERT_FILE_NAME - Replace CERT_FILE_NAME with the file name that was extracted from Producteev with the extension. (e.g.                                   Producteev.crt)
+         NOTE: CERT_FILE_NAME - Replace CERT_FILE_NAME with the file name that was extracted from Producteev with the extension. (e.g. Producteev.crt)
                CERT_NAME      - Replace CERT_NAME with an arbitrary name for the certificate. (e.g. Producteev)
 
-    iv) Navigate to "<PRODUCTEEV_CONNECTOR_HOME>/src/test/resources/keystores/products/" using command prompt and execute the following          command.
+    iv) Navigate to "<PRODUCTEEV_CONNECTOR_HOME>/src/test/resources/keystores/products/" using command prompt and execute the following command.
 
          keytool -importcert -file CERT_FILE_NAME -keystore wso2carbon.jks -alias "CERT_NAME" 
 
          This command will import Producteev certificate in to keystore. Give "wso2carbon" as password.
          To import the certificate give "wso2carbon" as password. Press "Y" to complete certificate import process.
 
-         NOTE: CERT_FILE_NAME - Replace CERT_FILE_NAME with the file name that was extracted from Producteev with the extension. (e.g.                                   Producteev.crt)
+         NOTE: CERT_FILE_NAME - Replace CERT_FILE_NAME with the file name that was extracted from Producteev with the extension. (e.g. Producteev.crt)
                CERT_NAME      - Replace CERT_NAME with an arbitrary name for the certificate. (e.g. Producteev).
  
- 7. Compress modified ESB as wso2esb-4.9.0.zip and copy that zip file in to location "<PRODUCTEEV_CONNECTOR_HOME>/repository/".
+ 7. Compress the modified ESB and copy that zip file in to location "<PRODUCTEEV_CONNECTOR_HOME>/repository/".
  
  8. Make sure that Producteev is specified as a module in ESB Connector Parent pom.
 
@@ -96,10 +96,10 @@ Steps to follow in setting integration test.
     xvi)   invitationEmail             - Email address of the person to be used as invite user to the network with mandatory parameters.
     xvii)  labelId                     - Use the label ID created under step 5 vi).
     xvii)  labelTitle                  - Use a valid string. The value should be different from the title of label created in step 5 vi).
-    xix)   foregroundColor             - Use a hexadecimal colour code as the value (The initial value should be different from '#e8cdde'                                         ).
-    xx)    backgroundColor             - Use a hexadecimal colour code as the value (The initial value should be different from '#9f3879'                                         ).
+    xix)   foregroundColor             - Use a hexadecimal colour code as the value (The initial value should be different from '#e8cdde').
+    xx)    backgroundColor             - Use a hexadecimal colour code as the value (The initial value should be different from '#9f3879').
 		
-    NOTE: The property values of taskTitleMandatory, taskTitleOptional, invitationEmail, labelId, labelTitle, foregroundColor, background           Color should be changed to unique different values for each integration execution.  
+    NOTE: The property values of taskTitleMandatory, taskTitleOptional, invitationEmail, labelId, labelTitle, foregroundColor, background Color should be changed to unique different values for each integration execution.  
 
  10. Navigate to "<PRODUCTEEV_CONNECTOR_HOME>/" and run the following command.
      $ mvn clean install
