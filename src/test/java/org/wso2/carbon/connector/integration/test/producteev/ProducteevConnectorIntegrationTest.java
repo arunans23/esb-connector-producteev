@@ -412,9 +412,6 @@ public class ProducteevConnectorIntegrationTest extends ConnectorIntegrationTest
       String apiEndpoint = apiUrl + "/tasks/" + connectorProperties.getProperty("taskIdMandatory");
 
       RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndpoint, "GET", apiRequestHeadersMap);
-
-//      Assert.assertEquals(esbRestResponse.getBody().getJSONArray("users").length(), apiRestResponse.getBody()
-//            .getJSONObject("task").getJSONArray("responsibles").length());
       Assert.assertEquals(
             esbRestResponse.getBody().getJSONArray("users").getJSONObject(1).getString("id"),
             apiRestResponse.getBody().getJSONObject("task").getJSONArray("responsibles").getJSONObject(1)
